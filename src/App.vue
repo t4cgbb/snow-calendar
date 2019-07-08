@@ -231,12 +231,20 @@ export default {
           }
         }
       ],
-      dateColor: {
-        year: 2019,
-        month: 7,
-        date: 14,
-        color: "#ffc"
-      },
+      dateColor: [
+        {
+          year: 2019,
+          month: 7,
+          date: 14,
+          color: "#ffc"
+        },
+        {
+          year: 2019,
+          month: 7,
+          date: 17,
+          color: "#ffc"
+        }
+      ],
       mainCal: {},
       refCal: {},
       mode: "month",

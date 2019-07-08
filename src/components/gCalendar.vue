@@ -211,7 +211,7 @@
                 default: 'en'
             },
             dateColor:{
-                type: Object,
+                type: Array,
                 require: false,
                 default: function(){
                     return {}
@@ -819,8 +819,10 @@
 
                         // 如果設定的顏色年月日等於
                         let color = void 0
-                        if (this.dateColor.year === _year && this.dateColor.month === _month && this.dateColor.date === i){
-                            color = this.dateColor.color
+                        for(let data of this.dateColor){
+                            if (data.year === _year && data.month === _month && data.date === i){
+                                color = data.color
+                            }
                         }
                         let $date_obj = {
                                 year: _year,
