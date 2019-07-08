@@ -1,87 +1,105 @@
 <template>
-    <div class="g article-layout">
-        <div class="g article-aside" v-if="uiVisible.refCal !== false || uiVisible.source !== false">
-            <mdCalendarMini
-                v-if="uiVisible.refCal !== false"
-                :refCal="refCal"
-                :mainCal="mainCal"
-                :obj="initMonth({year: refCal.year, month: refCal.month})"
-                :today="today"
-                :monthsn="'ref-'+ refCal.year +'month'+ refCal.month"
-                @sendEvent="receiveEvent"
-            ></mdCalendarMini>
-            <mdCalendarSource
-                v-if="uiVisible.source !== false"
-                :source="sources"
-                :lang="langType"
-                @sendEvent="receiveEvent"
-            ></mdCalendarSource>
-        </div>
-        <div class="g article-content">
-            <mdCalendarController
-                v-if="uiVisible.control !== false"
-                :mainCal="mainCal"
-                :mode="modeType"
-                :today="today"
-                :lang="langType"
-                @sendEvent="receiveEvent"
-            ></mdCalendarController>
-            <mdCalendarYear
-                v-if="modeType === 'year'"
-                :mainCal="mainCal"
-                :obj="initYear({year: mainCal.year})"
-                :today="today"
-                @sendEvent="receiveEvent"
-            ></mdCalendarYear>
-            <mdCalendarMonth
-                v-if="modeType === 'month'"
-                :obj="getMonth({year: mainCal.year, month: mainCal.month})"
-                :today="today"
-                :event="eventCompile"
-                :source="sourceCompile"
-                :monthsn="'Month-'+ mainCal.year +'month'+ mainCal.month"
-                :lang="langType"
-                @sendEvent="receiveEvent"
-            ></mdCalendarMonth>
-            <mdCalendarEvent
-                v-if="modeType === 'event'"
-                :obj="getMonth({year: mainCal.year, month: mainCal.month})"
-                :today="today"
-                :event="eventCompile"
-                :source="sourceCompile"
-                :lang="langType"
-                :monthsn="'Event-'+ mainCal.year +'month'+ mainCal.month"
-                @sendEvent="receiveEvent"
-            ></mdCalendarEvent>
-            <mdCalendarDays
-                v-if="modeType === 'week'"
-                :obj="getDate({year: mainCal.year, month: mainCal.month, date: mainCal.date}, 7)"
-                :today="today"
-                :event="eventCompile"
-                :source="sourceCompile"
-                :monthsn="'Week-'+ mainCal.year +'month'+ mainCal.month"
-                @sendEvent="receiveEvent"
-            ></mdCalendarDays>
-            <mdCalendarDays
-                v-if="modeType === '4days'"
-                :obj="getDate({year: mainCal.year, month: mainCal.month, date: mainCal.date}, 4)"
-                :today="today"
-                :event="eventCompile"
-                :source="sourceCompile"
-                :monthsn="'4Days-'+ mainCal.year +'month'+ mainCal.month"
-                @sendEvent="receiveEvent"
-            ></mdCalendarDays>
-            <mdCalendarDays
-                v-if="modeType === 'date'"
-                :obj="getDate({year: mainCal.year, month: mainCal.month, date: mainCal.date}, 1)"
-                :today="today"
-                :event="eventCompile"
-                :source="sourceCompile"
-                :monthsn="'Date-'+ mainCal.year +'month'+ mainCal.month"
-                @sendEvent="receiveEvent"
-            ></mdCalendarDays>
-        </div>
+  <div class="g article-layout">
+    <div
+      class="g article-aside"
+      v-if="uiVisible.refCal !== false || uiVisible.source !== false"
+    >
+      <mdCalendarMini
+        v-if="uiVisible.refCal !== false"
+        :refCal="refCal"
+        :mainCal="mainCal"
+        :obj="initMonth({ year: refCal.year, month: refCal.month })"
+        :today="today"
+        :monthsn="'ref-' + refCal.year + 'month' + refCal.month"
+        @sendEvent="receiveEvent"
+      ></mdCalendarMini>
+      <mdCalendarSource
+        v-if="uiVisible.source !== false"
+        :source="sources"
+        :lang="langType"
+        @sendEvent="receiveEvent"
+      ></mdCalendarSource>
     </div>
+    <div class="g article-content">
+      <mdCalendarController
+        v-if="uiVisible.control !== false"
+        :mainCal="mainCal"
+        :mode="modeType"
+        :today="today"
+        :lang="langType"
+        @sendEvent="receiveEvent"
+      ></mdCalendarController>
+      <mdCalendarYear
+        v-if="modeType === 'year'"
+        :mainCal="mainCal"
+        :obj="initYear({ year: mainCal.year })"
+        :today="today"
+        @sendEvent="receiveEvent"
+      ></mdCalendarYear>
+      <mdCalendarMonth
+        v-if="modeType === 'month'"
+        :obj="getMonth({ year: mainCal.year, month: mainCal.month })"
+        :today="today"
+        :event="eventCompile"
+        :source="sourceCompile"
+        :monthsn="'Month-' + mainCal.year + 'month' + mainCal.month"
+        :lang="langType"
+        @sendEvent="receiveEvent"
+      ></mdCalendarMonth>
+      <mdCalendarEvent
+        v-if="modeType === 'event'"
+        :obj="getMonth({ year: mainCal.year, month: mainCal.month })"
+        :today="today"
+        :event="eventCompile"
+        :source="sourceCompile"
+        :lang="langType"
+        :monthsn="'Event-' + mainCal.year + 'month' + mainCal.month"
+        @sendEvent="receiveEvent"
+      ></mdCalendarEvent>
+      <mdCalendarDays
+        v-if="modeType === 'week'"
+        :obj="
+          getDate(
+            { year: mainCal.year, month: mainCal.month, date: mainCal.date },
+            7
+          )
+        "
+        :today="today"
+        :event="eventCompile"
+        :source="sourceCompile"
+        :monthsn="'Week-' + mainCal.year + 'month' + mainCal.month"
+        @sendEvent="receiveEvent"
+      ></mdCalendarDays>
+      <mdCalendarDays
+        v-if="modeType === '4days'"
+        :obj="
+          getDate(
+            { year: mainCal.year, month: mainCal.month, date: mainCal.date },
+            4
+          )
+        "
+        :today="today"
+        :event="eventCompile"
+        :source="sourceCompile"
+        :monthsn="'4Days-' + mainCal.year + 'month' + mainCal.month"
+        @sendEvent="receiveEvent"
+      ></mdCalendarDays>
+      <mdCalendarDays
+        v-if="modeType === 'date'"
+        :obj="
+          getDate(
+            { year: mainCal.year, month: mainCal.month, date: mainCal.date },
+            1
+          )
+        "
+        :today="today"
+        :event="eventCompile"
+        :source="sourceCompile"
+        :monthsn="'Date-' + mainCal.year + 'month' + mainCal.month"
+        @sendEvent="receiveEvent"
+      ></mdCalendarDays>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -191,6 +209,13 @@
                 type: String,
                 require: false,
                 default: 'en'
+            },
+            dateColor:{
+                type: Object,
+                require: false,
+                default: function(){
+                    return {}
+                }
             }
         },
         computed: {
@@ -792,6 +817,11 @@
 
                         let _day = (_start_Day + i - 1) % 7;
 
+                        // 如果設定的顏色年月日等於
+                        let color = void 0
+                        if (this.dateColor.year === _year && this.dateColor.month === _month && this.dateColor.date === i){
+                            color = this.dateColor.color
+                        }
                         let $date_obj = {
                                 year: _year,
                                 month: _month,
@@ -800,7 +830,8 @@
                                 thisMonth: true,
                                 isActive: false,
                                 language_day: $language_day[_day],
-                                language_shortDay: $language_shortDay[_day]
+                                language_shortDay: $language_shortDay[_day],
+                                background_color: color
                             };
 
                         $week.push($date_obj);
@@ -1038,6 +1069,10 @@
 </script>
 
 <style scoped>
-    body { margin: 0 }
-    .g.article-layout { min-height: 100vh }
+body {
+  margin: 0;
+}
+.g.article-layout {
+  min-height: 100vh;
+}
 </style>
