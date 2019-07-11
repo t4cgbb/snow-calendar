@@ -29,8 +29,8 @@
 
 .md.calendar-month .calendar-day .events a, .md.calendar-days .caption-area .day-event .events a, .md.calendar-days > .day-area .day-line .calendar-day .day a {
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; }
+  /* text-overflow: ellipsis; */
+  white-space: normal; }
 
 .md.calendar-source ul.list li {
   background-color: #ffffff;
