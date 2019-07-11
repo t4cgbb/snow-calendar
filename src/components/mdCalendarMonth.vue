@@ -10,6 +10,7 @@
         v-for="n in 6"
         :obj="obj.week[n - 1]"
         :today="today"
+        :dateColor="dateColor"
         :event="event"
         :source="source"
         :activeNode="activeNode"
@@ -59,6 +60,9 @@ export default {
       require: true
     },
     lang: {
+      require: true
+    },
+    dateColor: {
       require: true
     }
   },

@@ -7,13 +7,14 @@
       isActive ? 'is-active' : ''
     ]"
     :style="{
-      background: obj.background_color ? obj.background_color : '#fff'
+      background: color ? color : '#fff'
     }"
     @click="clickTime"
   >
     <!-- <a class="date" @click.prevent.stop="update"
       >{{ obj.month }}/{{ obj.date }}</a
     > -->
+    {{ obj.background_color }}
     <a class="date">{{ obj.month }}/{{ obj.date }}</a>
     <div
       class="sensor"
@@ -35,6 +36,9 @@ export default {
     },
     activeNode: {
       require: true
+    },
+    dateColor: {
+      require: true
     }
   },
   computed: {
@@ -53,6 +57,18 @@ export default {
       } else {
         return false;
       }
+    },
+    color: function() {
+      for (let data of this.dateColor) {
+        if (
+          data.year == this.obj.year &&
+          data.month == this.obj.month &&
+          data.date == this.obj.date
+        ) {
+          return data.color;
+        }
+      }
+      return void 0;
     }
   },
   methods: {

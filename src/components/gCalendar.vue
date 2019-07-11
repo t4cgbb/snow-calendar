@@ -40,6 +40,7 @@
         v-if="modeType === 'month'"
         :obj="getMonth({ year: mainCal.year, month: mainCal.month })"
         :today="today"
+        :dateColor="dateColor"
         :event="eventCompile"
         :source="sourceCompile"
         :monthsn="'Month-' + mainCal.year + 'month' + mainCal.month"
@@ -817,13 +818,6 @@
 
                         let _day = (_start_Day + i - 1) % 7;
 
-                        // 如果設定的顏色年月日等於
-                        let color = void 0
-                        for(let data of this.dateColor){
-                            if (data.year === _year && data.month === _month && data.date === i){
-                                color = data.color
-                            }
-                        }
                         let $date_obj = {
                                 year: _year,
                                 month: _month,
@@ -833,7 +827,6 @@
                                 isActive: false,
                                 language_day: $language_day[_day],
                                 language_shortDay: $language_shortDay[_day],
-                                background_color: color
                             };
 
                         $week.push($date_obj);
@@ -1066,7 +1059,8 @@
             }else if( this.mode !== undefined ){
                 console.error('month 字串錯誤');
             }
-        }
+        },
+
     }
 </script>
 

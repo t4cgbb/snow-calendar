@@ -5,6 +5,7 @@
         v-for="n in 7"
         :obj="obj[n - 1]"
         :today="today"
+        :dateColor="dateColor"
         :activeNode="activeNode"
         :key="weeksn + 'date' + n"
         @sendEvent="receiveEvent"
@@ -51,6 +52,9 @@ export default {
       require: true
     },
     weeksn: {
+      require: true
+    },
+    dateColor: {
       require: true
     }
   },
